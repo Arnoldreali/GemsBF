@@ -28,7 +28,7 @@ router.get('/gems', async(req, res)=>{
                 } 
             })
         }
-        console.log("ctx", ctx)
+        
         res.render('gems/all-gems', {gems: ctx.gems})
     })
 }) 
@@ -58,7 +58,7 @@ router.post('/gems/new-gem', async(req,res)=>{
                 }
             }
 
-    const errors = []
+    /*const errors = []
     
     if(!gema.name){
         errors.push({text: "Please write a title "})
@@ -103,18 +103,17 @@ router.post('/gems/new-gem', async(req,res)=>{
         res.render('gems/new-gem', { errors, name, description, price, canPurchase, faces, 
             color, rarity, shine, url, number, stars, body, author}
             )
-    }else{
+    }else{*/
         const newGem = new GemModel(gema)
         console.log("new gem ", newGem )
         await newGem.save()
         res.redirect('/gems')
     
-     }
+    /*}*/
 })
 
 router.get('/gems/edit/:id', async(req, res)=>{
     const gemDB = await GemModel.findById(req.params.id)
-    console.log("gem DB",gemDB)
     const Gem = {
         _id: gemDB._id,
         name: gemDB.name,
@@ -136,28 +135,31 @@ router.get('/gems/edit/:id', async(req, res)=>{
 })
 
 router.put('/gems/edit-gem/:id',async(req, res)=>{
-     const gemas = {
-        name,
-        description,
-        price,
-        canPurchase,
+     const gemas = req.body 
+     
+     const newGem2 = {
+        name: gemas.name,
+        description: gemas.description,
+        price:  gemas.price,
+        canPurchase: gemas.canPurchase,
         specs: {
-            faces: specs.faces,
-            color: specs.color,
-            rarity: specs.rarity,
-            shine: specs.shine,
+            faces: gemas.faces,
+            color: gemas.color,
+            rarity: gemas.rarity,
+            shine: gemas.shine,
         } , 
         images: {
-                url: images.url,
-                number: images.number
+                url: gemas.url,
+                number: gemas.number
             },
         reviews:{
-            stars: reviews.stars,
-            body: reviews.body,
-            author: reviews.author
+            stars: gemas.star,
+            body: gemas.body,
+            author: gemas.author
         }
-    } = req.body
-    await GemModel.findByIdAndUpdate(req.params.id, gemas)
+    }
+    console.log("newGem2", newGem2)
+    await GemModel.findByIdAndUpdate(req.params.id, newGem2)
     res.redirect('/gems')
 })
 
@@ -165,4 +167,5 @@ router.delete('/gems/delete/:id', async(req, res)=>{
     await GemModel.findByIdAndDelete(req.params.id)
     res.redirect('/gems')
 })
+
 module.exports = router
