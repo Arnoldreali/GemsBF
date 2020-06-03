@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+<style>
+    body {
+        background-image: url('data:image/jpeg;base64,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');
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,11 +17,21 @@
     <!--FontAwesome-->
     <script src="https://kit.fontawesome.com/7024ca337d.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
-    {{> nav}}
+    <div style="text-align: center;">
+        {{> nav}}
+    </div>
+
+    <header style="text-align: center;">
+        <h1>Flatlander Crafted Gems</h1>
+        <h2>– an Angular store -</h2>
+    </header>
     <main class="container p-4">
         {{{ body }}}
     </main>
     {{> footer}}
 </body>
+
+
 </html>

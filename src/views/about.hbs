@@ -1,1 +1,79 @@
-<h1>About</h1>
+
+<div class="" style="text-align: center;">
+    {{#each gems}}
+    <div class="list-group" style="text-align: center;">
+        <div class="list-group-item">
+            <h3 align="center">Name: {{ name}} <em class="pull-right">Price:{{ price}}</em></h3>
+            <div>
+                {{> productos-gallery}}
+            </div>
+            <h3>Reviews</h3>
+
+            <blockquote>
+                <strong>{{stars}} Stars</strong>
+                {{body}}
+                <cite class="clearfix">—{{author}}</cite>
+            </blockquote>
+            <form name="reviewForm">
+                <h4>Submit a Review</h4>
+                <fieldset class="form-group">
+                    <h5><label for="exampleSelect1">Stars</label></h5>
+                    <select class="form-control" title="Stars">
+                        <option value>Rate the Product</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </fieldset>
+                <fieldset class="form-group">
+                    <h5><label for="exampleSelect1">Comment</label></h5>
+                    <textarea class="form-control" placeholder="Write a short review of the product..."
+                        title="Review"></textarea>
+                </fieldset>
+                <fieldset class="form-group">
+                    <h5><label for="exampleSelect1">Email</label></h5>
+                    <input type="email" class="form-control" placeholder="ArnoldoRelivazquez@ejemplo.com"
+                        title="Email" />
+                </fieldset>
+                <fieldset class="form-group">
+                    <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    {{else}}
+    <div class="card mx-auto">
+        <div class="card-body">
+            <p class="lead">There are not comments yet.</p>
+        </div>
+    </div>
+    <form name="reviewForm">
+        <h4>Submit a Review</h4>
+        <fieldset class="form-group">
+            <h5><label for="exampleSelect1">Stars</label></h5>
+            <select class="form-control" title="Stars">
+                <option value>Rate the Product</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </fieldset>
+        <fieldset class="form-group">
+            <h5><label for="exampleSelect1">Comment</label></h5>
+            <textarea class="form-control" placeholder="Write a short review of the product..."
+                title="Review"></textarea>
+        </fieldset>
+        <fieldset class="form-group">
+            <h5><label for="exampleSelect1">Email</label></h5>
+            <input type="email" class="form-control" placeholder="ArnoldoRelivazquez@ejemplo.com" title="Email" />
+        </fieldset>
+        <fieldset class="form-group">
+            <input type="submit" class="btn btn-primary pull-right" value="Submit Review" />
+        </fieldset>
+    </form>
+    {{/each}}
+</div>

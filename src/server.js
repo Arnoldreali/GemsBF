@@ -29,6 +29,7 @@ app.use(require('./routes/index'))
 app.use(require('./routes/gems'))
 app.use(require('./routes/users'))
 
+
 //Statics Files
 
 //Server Initialize

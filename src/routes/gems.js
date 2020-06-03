@@ -6,6 +6,10 @@ router.get('/gems/add', (req, res)=>{
     res.render('gems/new-gem')
 })
 
+router.get('/about', (req, res)=>{
+    res.render('/gems/about')
+})
+
 router.get('/gems', async(req, res)=>{ 
     await GemModel.find({}).sort({creationDate: 'desc'}).then(concepts =>{
         const ctx = {
@@ -31,7 +35,8 @@ router.get('/gems', async(req, res)=>{
         
         res.render('gems/all-gems', {gems: ctx.gems})
     })
-}) 
+})
+
 
 router.post('/gems/new-gem', async(req,res)=>{
   
@@ -58,58 +63,11 @@ router.post('/gems/new-gem', async(req,res)=>{
                 }
             }
 
-    /*const errors = []
-    
-    if(!gema.name){
-        errors.push({text: "Please write a title "})
-    }
-    if(!gema.description){
-    errors.push({text: "Please write a description"})
-    }
-    if(!gema.price){
-        errors.push({text: "Please select a price "})
-    }
-    if(!gema.canPurchase){
-        errors.push({text: "Please select can purchase "})
-    }
-    if(!gema.specs.faces){
-        errors.push({text: "Please select number of faces "})
-    }
-    if(!gema.specs.color){
-        errors.push({text: "Please write a color "})
-    }
-    if(!gema.specs.rarity){
-        errors.push({text: "Please select a rarity"})
-    }
-    if(!gema.specs.shine){
-        errors.push({text: "Please select a shine"})
-    }
-    if(!gema.images.url){
-        errors.push({text: "Please write a url "})
-    }
-    if(!gema.images.number){
-        errors.push({text: "Please write a number "})
-    }
-    if(!gema.reviews.stars){
-        errors.push({text: "Please select a stars "})
-    }
-    if(!gema.reviews.body){
-        errors.push({text: "Please write a body "})
-    }
-    if(!gema.reviews.author){
-        errors.push({text: "Please write a author"})
-    }
-   if(errors.length > 0){
-        res.render('gems/new-gem', { errors, name, description, price, canPurchase, faces, 
-            color, rarity, shine, url, number, stars, body, author}
-            )
-    }else{*/
         const newGem = new GemModel(gema)
-        console.log("new gem ", newGem )
+
         await newGem.save()
         res.redirect('/gems')
     
-    /*}*/
 })
 
 router.get('/gems/edit/:id', async(req, res)=>{

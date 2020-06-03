@@ -1,1 +1,19 @@
-<h1>Index</h1>
+<div class="" style="text-align: center;">
+    {{#each gems}}
+    <div class="list-group" style="text-align: center;">
+        <div class="list-group-item">
+            <h3 align="center">Name: {{ name}} <em class="pull-right">Price:{{ price}}</em></h3>
+            <div>
+                {{> productos-gallery}}
+            </div>
+        </div>
+    </div>
+    {{else}}
+    <div class="card mx-auto">
+        <div class="card-body">
+            <p class="lead">There are not Gems yet.</p>
+        </div>
+    </div>
+
+    {{/each}}
+</div>
